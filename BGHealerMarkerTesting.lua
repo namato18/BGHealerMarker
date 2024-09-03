@@ -6,6 +6,24 @@ f:RegisterEvent("PLAYER_ENTERING_BATTLEGROUND")
 f:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 f:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
 
+UserSettings = UserSettings or {}
+
+local function LoadSettings()
+    -- Default icon size if not previously saved
+    if not MyAddonSettings.iconSize then
+        MyAddonSettings.iconSize = 32  -- Set your default size
+    end
+end
+
+-- Function to save the user preference
+local function SetIconSize(size)
+    MyAddonSettings.iconSize = size
+    -- Update the UI or do whatever is necessary with the new size
+end
+
+LoadSettings()
+
+
 local healer_list = {}
 local check_tracker = 0
 local iconSize = 32
@@ -51,6 +69,7 @@ button:SetText("Okay") -- Set the button text
 
 button:SetScript("OnClick", function()
     iconSize = math.floor(slider:GetValue())
+    MyAddonSettings.iconSize = iconSize
     f:Hide()
 end)
 
@@ -131,7 +150,7 @@ local function CreateIconAboveNameplate(unitID)
 
             -- Create the icon frame
             local icon = CreateFrame("Frame", nil, UIParent)
-            icon:SetSize(iconSize, iconSize)
+            icon:SetSize(MyAddonSettings.iconSize, MyAddonSettings.iconSize)
             icon:SetFrameStrata("HIGH")
 
             -- Create a texture for the main icon
