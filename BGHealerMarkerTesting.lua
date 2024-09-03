@@ -1,3 +1,4 @@
+-- small change
 -- Register the frame and events
 local f = CreateFrame("Frame")
 f:RegisterEvent("UPDATE_BATTLEFIELD_SCORE")
