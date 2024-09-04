@@ -3,6 +3,6 @@
 ## Notes: Displays an icon above enemy healers in battlegrounds.
 ## Version: 1.0
 ## Author: Nick Amato
-## SavedVariables: UserSettings
+## SavedVariables: HealerTrackerSettings
 
 BGHealerMarkerTesting.lua

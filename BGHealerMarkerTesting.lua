@@ -6,18 +6,18 @@ f:RegisterEvent("PLAYER_ENTERING_BATTLEGROUND")
 f:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 f:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
 
-UserSettings = UserSettings or {}
+HealerTrackerSettings = HealerTrackerSettings or {}
 
 local function LoadSettings()
     -- Default icon size if not previously saved
-    if not MyAddonSettings.iconSize then
-        MyAddonSettings.iconSize = 32  -- Set your default size
+    if not HealerTrackerSettings.iconSize then
+        HealerTrackerSettings.iconSize = 32  -- Set your default size
     end
 end
 
 -- Function to save the user preference
 local function SetIconSize(size)
-    MyAddonSettings.iconSize = size
+    HealerTrackerSettings.iconSize = size
     -- Update the UI or do whatever is necessary with the new size
 end
 
@@ -47,7 +47,7 @@ text:SetText("Set Icon Size")
 local slider = CreateFrame("Slider", nil, f, "OptionsSliderTemplate")
 slider:SetPoint("CENTER", f, "CENTER", 0, 0) -- Adjust position as needed
 slider:SetMinMaxValues(0, 100) -- Set the min and max values for the slider
-slider:SetValue(32) -- Set the initial value
+slider:SetValue(HealerTrackerSettings.iconSize) -- Set the initial value
 slider:SetValueStep(1) -- Set the step size for the slider
 slider:SetWidth(180) -- Set the width of the slider
 
@@ -69,7 +69,7 @@ button:SetText("Okay") -- Set the button text
 
 button:SetScript("OnClick", function()
     iconSize = math.floor(slider:GetValue())
-    MyAddonSettings.iconSize = iconSize
+    HealerTrackerSettings.iconSize = iconSize
     f:Hide()
 end)
 
@@ -150,7 +150,7 @@ local function CreateIconAboveNameplate(unitID)
 
             -- Create the icon frame
             local icon = CreateFrame("Frame", nil, UIParent)
-            icon:SetSize(MyAddonSettings.iconSize, MyAddonSettings.iconSize)
+            icon:SetSize(HealerTrackerSettings.iconSize, HealerTrackerSettings.iconSize)
             icon:SetFrameStrata("HIGH")
 
             -- Create a texture for the main icon
